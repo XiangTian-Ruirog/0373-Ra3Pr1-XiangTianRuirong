@@ -8,3 +8,7 @@ const missatge = document.getElementById('missatge')
 const ordenarAscBt = document.getElementById('ordenarAsc')
 const ordenarDescBt = document.getElementById('ordenarDesc')
 let alumnes = []
+
+function mostrarMissatge(text, esError = true){
+    missatgeDiv.textContent = text
+}
