@@ -9,6 +9,8 @@ const ordenarAscBt = document.getElementById('ordenarAsc')
 const ordenarDescBt = document.getElementById('ordenarDesc')
 let alumnes = []
 
-function mostrarMissatge(text, esError = true){
-    missatgeDiv.textContent = text
+function mostrarMissatge(){
+    missatgeDiv.textContent = 'ERROR: Revisa les dades, recorda que el nom no pot estar en buit i les notes tenen que estar en el rang 0-10'
+    missatgeDiv.style.color = 'red'
+    missatgeDiv.style.display = 'block'
 }
