@@ -10,7 +10,6 @@ const ordenarDescBt = document.getElementById('ordenarDesc')
 let alumnes = []
 
 function validarFormulari(nom, examen, practiques, actitud) {
-    // Validar que el nom no estigui buit
     if (!nom || nom.trim() === '') {
         mostrarMissatgeError('El camp "Nom" no pot estar buit')
         return false
@@ -34,5 +33,10 @@ function mostrarMissatge(){
     missatgeDiv.textContent = 'ERROR: Revisa les dades, recorda que el nom no pot estar en buit i les notes tenen que estar en el rang 0-10'
     missatgeDiv.style.color = 'red'
     missatgeDiv.style.display = 'block'
+}
+
+function calcularNotaFinal(examen, practiques, actitud) {
+    const notaFinal = (examen * 0.6) + (practiques * 0.3) + (actitud * 0.1)
+    return Math.round(notaFinal * 100) / 100
 }
 
