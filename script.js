@@ -4,7 +4,7 @@ const examenInput = document.getElementById('examen')
 const practiquesInput = document.getElementById('practiques')
 const actitudInput = document.getElementById('actitud')
 const cosTaula = document.getElementById('cosTaula')
-const missatge = document.getElementById('missatge')
+const missatgeDiv = document.getElementById('missatge')
 const ordenarAscBt = document.getElementById('ordenarAsc')
 const ordenarDescBt = document.getElementById('ordenarDesc')
 let alumnes = []
@@ -29,8 +29,8 @@ function validarFormulari(nom, examen, practiques, actitud) {
     return true
 }
 
-function mostrarMissatge(){
-    missatgeDiv.textContent = 'ERROR: Revisa les dades, recorda que el nom no pot estar en buit i les notes tenen que estar en el rang 0-10'
+function mostrarMissatgeError(missatgeText) {
+    missatgeDiv.textContent = missatgeText
     missatgeDiv.style.color = 'red'
     missatgeDiv.style.display = 'block'
 }
@@ -40,3 +40,47 @@ function calcularNotaFinal(examen, practiques, actitud) {
     return Math.round(notaFinal * 100) / 100
 }
 
+function afegirAlumne() {
+    const nom = nomInput.value
+    const examen = parseFloat(examenInput.value)
+    const practiques = parseFloat(practiquesInput.value)
+    const actitud = parseFloat(actitudInput.value)
+    
+    if (!validarFormulari(nom, examen, practiques, actitud)) {
+        return
+    }
+    
+    const notaFinal = calcularNotaFinal(examen, practiques, actitud)
+    const alumne = {
+        nom: nom.trim(),
+        examen: examen,
+        practiques: practiques,
+        actitud: actitud,
+        notaFinal: notaFinal
+    }
+    alumnes.push(alumne)
+    mostrarAlumnes()
+    formulari.reset()
+    missatgeDiv.style.display = 'none'
+}
+
+function mostrarAlumnes() {
+    cosTaula.innerHTML = ''
+    
+    for (let i = 0; i < alumnes.length; i++) {
+        const alumne = alumnes[i]
+        const estat = alumne.notaFinal >= 5 ? 'Aprovat' : 'Suspès'
+        
+        const fila = `
+            <tr>
+                <td>${alumne.nom}</td>
+                <td>${alumne.examen.toFixed(2)}</td>
+                <td>${alumne.practiques.toFixed(2)}</td>
+                <td>${alumne.actitud.toFixed(2)}</td>
+                <td>${alumne.notaFinal.toFixed(2)}</td>
+                <td>${estat}</td>
+            </tr>
+        `
+        cosTaula.innerHTML += fila
+    }
+}
