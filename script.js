@@ -84,3 +84,28 @@ function mostrarAlumnes() {
         cosTaula.innerHTML += fila
     }
 }
+function ordenarAlumnes(ordre) {
+    if (ordre === 'asc') {
+        alumnes.sort(function(a, b) {
+            return a.notaFinal - b.notaFinal
+        })
+    } else if (ordre === 'desc') {
+        alumnes.sort(function(a, b) {
+            return b.notaFinal - a.notaFinal
+        })
+    }
+    mostrarAlumnes()
+}
+
+formulari.addEventListener('submit', function(event) {
+    event.preventDefault()
+    afegirAlumne()
+})
+
+ordenarAscBt.addEventListener('click', function() {
+    ordenarAlumnes('asc')
+})
+
+ordenarDescBt.addEventListener('click', function() {
+    ordenarAlumnes('desc')
+})
