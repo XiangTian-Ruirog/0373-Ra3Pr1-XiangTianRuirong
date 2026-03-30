@@ -15,6 +15,19 @@ function validarFormulari(nom, examen, practiques, actitud) {
         mostrarMissatgeError('El camp "Nom" no pot estar buit')
         return false
     }
+    if (isNaN(examen) || examen < 0 || examen > 10) {
+        mostrarMissatgeError('La nota de l\'examen ha de ser un número entre 0 i 10')
+        return false
+    }
+    if (isNaN(practiques) || practiques < 0 || practiques > 10) {
+        mostrarMissatgeError('La nota de les pràctiques ha de ser un número entre 0 i 10')
+        return false
+    }
+    if (isNaN(actitud) || actitud < 0 || actitud > 10) {
+        mostrarMissatgeError('La nota d\'actitud ha de ser un número entre 0 i 10')
+        return false
+    }
+    return true
 }
 
 function mostrarMissatge(){
